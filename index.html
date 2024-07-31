@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 從 cdn 載入 Vue3，省去下載的步驟 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <!-- 指定應用程式的生成位置 -->
+  <div id="app">
+    {{ num }}
+
+    <!-- v-on => 添加監聽器 -->  
+    <button type="button" v-on:click="clickMe">點我</button>
+
+  </div>
+
+  
+
+  <script>
+    // 在 vue 裡，都是使用 const 宣告
+
+    console.log(Vue);
+    
+    // createApp => 建立 Vue 的 應用程式 所使用的方法
+    // ref => 定義值的方法
+    // {} => 解構，取出特定的方法
+    const { createApp, ref } = Vue;
+  
+
+    const app = createApp({    // 建立根元件
+      // 建立 Composition API
+      setup() {
+        const num = ref(1);
+        // console.log(num);    // value: (...)
+        // console.log(num.value);    // 1
+        // --自動累加--
+        // setInterval(() => {
+        //   num.value ++
+        // }, 500);
+
+        function clickMe() {
+          num.value ++
+        }
+
+        return {
+          num,
+          clickMe
+        }
+      }
+    });
+    app.mount('#app');    // 生成位置
+
+
+  </script>
+</body>
+</html>
